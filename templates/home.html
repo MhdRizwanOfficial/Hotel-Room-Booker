@@ -62,7 +62,7 @@
                         <img src="{% static 'image/room1.jpg' %}" alt="Double Deluxe Room">
                         <a href="{% url 'bookings:book_now' room_id=1 %}" class="btn theme_btn button_hover">Book Now</a>
                     </div>
-                    <a href="#"><h4 class="sec_h4">Double Deluxe Room</h4></a>
+                    <a href="{% url 'bookings:double_deluxe_room' %}"><h4 class="sec_h4">Double Deluxe Room</h4></a>
                     <h5>Rs.2000<small>/night</small></h5>
                 </div>
             </div>
@@ -70,10 +70,10 @@
                 <div class="accomodation_item text-center">
                     <div id="availability-room-2" class="availability-message"></div>
                     <div class="hotel_img">
-                        <img src="{% static 'image/room2.jpg' %}" alt="Single Deluxe Room">
+                        <img src="{% static 'image/room2.jpg' %}" alt="Double Standard Room">
                         <a href="{% url 'bookings:book_now' room_id=2 %}" class="btn theme_btn button_hover">Book Now</a>
                     </div>
-                    <a href="#"><h4 class="sec_h4">Double Standard Room</h4></a>
+                    <a href="{% url 'bookings:double_standard_room' %}"><h4 class="sec_h4">Double Standard Room</h4></a>
                     <h5>Rs.1500<small>/night</small></h5>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                         <img src="{% static 'image/room3.jpg' %}" alt="Honeymoon Suite">
                         <a href="{% url 'bookings:book_now' room_id=3 %}" class="btn theme_btn button_hover">Book Now</a>
                     </div>
-                    <a href="#"><h4 class="sec_h4">Honeymoon Suite</h4></a>
+                    <a href="{% url 'bookings:honeymoon_suite' %}"><h4 class="sec_h4">Honeymoon Suite</h4></a>
                     <h5>Rs.2500<small>/night</small></h5>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                         <img src="{% static 'image/room4.jpg' %}" alt="Economy Double">
                         <a href="{% url 'bookings:book_now' room_id=4 %}" class="btn theme_btn button_hover">Book Now</a>
                     </div>
-                    <a href="#"><h4 class="sec_h4">Economy Double</h4></a>
+                    <a href="{% url 'bookings:economy_double_room' %}"><h4 class="sec_h4">Economy Double</h4></a>
                     <h5>Rs.1000<small>/night</small></h5>
                 </div>
             </div>
@@ -175,74 +175,7 @@
         </section>
         <!--================ About History Area  =================-->
         
-        <!--================ Testimonial Area  =================-->
-        <section class="testimonial_area section_gap">
-            <div class="container">
-                <div class="section_title text-center">
-                    <h2 class="title_color">Testimonial from our Clients</h2>
-                    <p>The French Revolution constituted for the conscience of the dominant aristocratic class a fall from </p>
-                </div>
-                <div class="testimonial_slider owl-carousel">
-                    <div class="media testimonial_item">
-                        <img class="rounded-circle" src="{% static 'image/testtimonial-1.jpg' %}" alt="">
-                        <div class="media-body">
-                            <p>As conscious traveling Paupers we must always be concerned about our dear Mother Earth. If you think about it, you travel across her face, and She is the </p>
-                            <a href="#"><h4 class="sec_h4">Fanny Spencer</h4></a>
-                            <div class="star">
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star-half-o"></i></a>
-                            </div>
-                        </div>
-                    </div>    
-                    <div class="media testimonial_item">
-                        <img class="rounded-circle" src="{% static 'image/testtimonial-1.jpg' %}" alt="">
-                        <div class="media-body">
-                            <p>As conscious traveling Paupers we must always be concerned about our dear Mother Earth. If you think about it, you travel across her face, and She is the </p>
-                            <a href="#"><h4 class="sec_h4">Fanny Spencer</h4></a>
-                            <div class="star">
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star-half-o"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="media testimonial_item">
-                        <img class="rounded-circle" src="{% static 'image/testtimonial-1.jpg' %}" alt="">
-                        <div class="media-body">
-                            <p>As conscious traveling Paupers we must always be concerned about our dear Mother Earth. If you think about it, you travel across her face, and She is the </p>
-                            <a href="#"><h4 class="sec_h4">Fanny Spencer</h4></a>
-                            <div class="star">
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star-half-o"></i></a>
-                            </div>
-                        </div>
-                    </div>    
-                    <div class="media testimonial_item">
-                        <img class="rounded-circle" src="{% static 'image/testtimonial-1.jpg' %}" alt="">
-                        <div class="media-body">
-                            <p>As conscious traveling Paupers we must always be concerned about our dear Mother Earth. If you think about it, you travel across her face, and She is the </p>
-                            <a href="#"><h4 class="sec_h4">Fanny Spencer</h4></a>
-                            <div class="star">
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star"></i></a>
-                                <a href="#"><i class="fa fa-star-half-o"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--================ Testimonial Area  =================-->
+
         
         <!--================ Latest Blog Area  =================-->
         <section class="latest_blog_area section_gap">

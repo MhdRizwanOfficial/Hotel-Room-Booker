@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <br><br>
+            <h3>Economy Double Room</h3>
+            <p>Enjoy comfort and value in our Economy Double Room. Perfect for budget-conscious travelers, this room features a double bed, a private bathroom, and essential amenities to make your stay pleasant.</p>
+            <h4>Specialities:</h4>
+            <ul>
+                <li>Double bed</li>
+                <li>Ensuite bathroom</li>
+                <li>Free Wi-Fi</li>
+            </ul>
+            <a href="{% url 'bookings:book_now' room_id=4 %}" class="btn btn-primary mt-3">Book Now</a>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'image/room4.jpg' %}" alt="Economy Double" class="img-fluid rounded">
+        </div>
+    </div>
+</div>
+{% endblock %}

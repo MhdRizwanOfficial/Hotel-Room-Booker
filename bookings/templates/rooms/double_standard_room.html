@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <br><br>
+            <h3>Double Standard Room</h3>
+            <p>Relax and unwind in our Double Standard Room. This comfortable room is designed for convenience and offers a queen-sized bed, a cozy seating area, and a private bathroom with all essential amenities.</p>
+            <h4>Specialities:</h4>
+            <ul>
+                <li>Queen-sized bed</li>
+                <li>Private balcony</li>
+                <li>Ensuite bathroom</li>
+                <li>Free Wi-Fi</li>
+            </ul>
+            <a href="{% url 'bookings:book_now' room_id=2 %}" class="btn btn-primary mt-3">Book Now</a>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'image/room2.jpg' %}" alt="Double Standard Room" class="img-fluid rounded">
+        </div>
+    </div>
+</div>
+{% endblock %}

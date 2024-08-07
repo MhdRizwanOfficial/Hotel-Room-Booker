@@ -151,3 +151,14 @@ def check_availability(request):
         return render(request, 'bookings/check_availability.html', {'availability_list': [], 'message': ''})
     
 
+def double_deluxe_room(request):
+    return render(request, 'rooms/double_deluxe_room.html')
+
+def double_standard_room(request):
+    return render(request, 'rooms/double_standard_room.html')
+
+def honeymoon_suite(request):
+    return render(request, 'rooms/honeymoon_suite.html')
+
+def economy_double_room(request):
+    return render(request, 'rooms/economy_double_room.html')

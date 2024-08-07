@@ -19,94 +19,64 @@
         </section>
         <!--================Breadcrumb Area =================-->
         
-<!--================ Accomodation Area  =================-->
-<section class="accomodation_area section_gap">
+<!--================ Accommodation Area  =================-->
+<section id="accommodationSection" class="accomodation_area section_gap">
     <div class="container">
         <div class="section_title text-center">
-            <h2 class="title_color">Special Accommodation</h2>
-            <p>We all live in an age that belongs to the young at heart. Life that is becoming extremely fast,</p>
+            <h2 class="title_color">Hotel Accommodation</h2>
+            <p>We all live in an age that belongs to the young at heart. Life that is becoming extremely fast, </p>
         </div>
         <div class="row mb_30">
-            <!-- Room 1 -->
             <div class="col-lg-3 col-sm-6">
                 <div class="accomodation_item text-center">
+                    <div id="availability-room-1" class="availability-message"></div>
                     <div class="hotel_img">
-                        <img src="{% static 'image/room1.jpg' %}" alt="">
+                        <img src="{% static 'image/room1.jpg' %}" alt="Double Deluxe Room">
                         <a href="{% url 'bookings:book_now' room_id=1 %}" class="btn theme_btn button_hover">Book Now</a>
                     </div>
-                    <a href="#"><h4 class="sec_h4">Double Deluxe Room</h4></a>
+                    <a href="{% url 'bookings:double_deluxe_room' %}"><h4 class="sec_h4">Double Deluxe Room</h4></a>
                     <h5>Rs.2000<small>/night</small></h5>
-                    <button type="button" onclick="checkRoomAvailability(1)" class="btn btn-primary">Check Availability</button>
-                    <div id="availability-room-1" class="availability-message"></div>
                 </div>
             </div>
-            <!-- Room 2 -->
             <div class="col-lg-3 col-sm-6">
                 <div class="accomodation_item text-center">
+                    <div id="availability-room-2" class="availability-message"></div>
                     <div class="hotel_img">
-                        <img src="{% static 'image/room2.jpg' %}" alt="">
+                        <img src="{% static 'image/room2.jpg' %}" alt="Double Standard Room">
                         <a href="{% url 'bookings:book_now' room_id=2 %}" class="btn theme_btn button_hover">Book Now</a>
                     </div>
-                    <a href="#"><h4 class="sec_h4">Single Deluxe Room</h4></a>
+                    <a href="{% url 'bookings:double_standard_room' %}"><h4 class="sec_h4">Double Standard Room</h4></a>
                     <h5>Rs.1500<small>/night</small></h5>
-                    <button type="button" onclick="checkRoomAvailability(2)" class="btn btn-primary">Check Availability</button>
-                    <div id="availability-room-2" class="availability-message"></div>
                 </div>
             </div>
-            <!-- Room 3 -->
             <div class="col-lg-3 col-sm-6">
                 <div class="accomodation_item text-center">
+                    <div id="availability-room-3" class="availability-message"></div>
                     <div class="hotel_img">
-                        <img src="{% static 'image/room3.jpg' %}" alt="">
+                        <img src="{% static 'image/room3.jpg' %}" alt="Honeymoon Suite">
                         <a href="{% url 'bookings:book_now' room_id=3 %}" class="btn theme_btn button_hover">Book Now</a>
                     </div>
-                    <a href="#"><h4 class="sec_h4">Honeymoon Suite</h4></a>
+                    <a href="{% url 'bookings:honeymoon_suite' %}"><h4 class="sec_h4">Honeymoon Suite</h4></a>
                     <h5>Rs.2500<small>/night</small></h5>
-                    <button type="button" onclick="checkRoomAvailability(3)" class="btn btn-primary">Check Availability</button>
-                    <div id="availability-room-3" class="availability-message"></div>
                 </div>
             </div>
-            <!-- Room 4 -->
             <div class="col-lg-3 col-sm-6">
                 <div class="accomodation_item text-center">
+                    <div id="availability-room-4" class="availability-message"></div>
                     <div class="hotel_img">
-                        <img src="{% static 'image/room4.jpg' %}" alt="">
+                        <img src="{% static 'image/room4.jpg' %}" alt="Economy Double">
                         <a href="{% url 'bookings:book_now' room_id=4 %}" class="btn theme_btn button_hover">Book Now</a>
                     </div>
-                    <a href="#"><h4 class="sec_h4">Economy Double</h4></a>
+                    <a href="{% url 'bookings:economy_double_room' %}"><h4 class="sec_h4">Economy Double</h4></a>
                     <h5>Rs.1000<small>/night</small></h5>
-                    <button type="button" onclick="checkRoomAvailability(4)" class="btn btn-primary">Check Availability</button>
-                    <div id="availability-room-4" class="availability-message"></div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<!--================ Accommodation Area  =================-->
 
-<script>
-    function checkRoomAvailability(roomId) {
-        const formData = new FormData();
-        formData.append('room_id', roomId);
 
-        fetch("{% url 'bookings:room_availability' %}", {
-            method: 'POST',
-            headers: {
-                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-            },
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            const messageElement = document.getElementById(`availability-room-${roomId}`);
-            if (data.available) {
-                messageElement.textContent = `Only ${data.available_rooms} rooms available`;
-            } else {
-                messageElement.textContent = 'No rooms available';
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    }
-</script>
         
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->

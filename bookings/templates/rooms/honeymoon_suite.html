@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <br><br>
+            <h3>Honeymoon Suite</h3>
+            <p>Make your special moments unforgettable in our Honeymoon Suite. This romantic suite features a king-sized bed, a luxurious bathroom with a jacuzzi, and a private balcony with breathtaking views.</p>
+            <h4>Specialities:</h4>
+            <ul>
+                <li>King-sized bed</li>
+                <li>Private balcony</li>
+                <li>Ensuite bathroom with jacuzzi</li>
+                <li>Free Wi-Fi</li>
+            </ul>
+            <a href="{% url 'bookings:book_now' room_id=3 %}" class="btn btn-primary mt-3">Book Now</a>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'image/room3.jpg' %}" alt="Honeymoon Suite" class="img-fluid rounded">
+        </div>
+    </div>
+</div>
+{% endblock %}

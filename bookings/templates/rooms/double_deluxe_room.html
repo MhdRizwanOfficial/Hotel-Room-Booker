@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+<div class="container ">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <br><br>
+            <h3>Double Deluxe Room</h3>
+            <p>Experience the ultimate in luxury with our Double Deluxe Room. Featuring elegant decor and modern amenities, this room offers a king-sized bed, a private balcony with stunning views, and an ensuite bathroom.</p>
+            <h4>Specialities:</h4>
+            <ul>
+                <li>King-sized bed</li>
+                <li>Private balcony</li>
+                <li>Ensuite bathroom</li>
+                <li>Free Wi-Fi</li>
+            </ul>
+            <a href="{% url 'bookings:book_now' room_id=1 %}" class="btn btn-primary mt-3">Book Now</a>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'image/room1.jpg' %}" alt="Double Deluxe Room" class="img-fluid rounded">
+        </div>
+    </div>
+</div>
+{% endblock %}
