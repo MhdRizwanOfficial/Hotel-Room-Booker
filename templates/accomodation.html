@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+        
+        <!--================Breadcrumb Area =================-->
+        <section class="breadcrumb_area">
+            <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
+            <div class="container">
+                <div class="page-cover text-center">
+                    <h2 class="page-cover-tittle">Accomodation</h2>
+                    <ol class="breadcrumb">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li class="active">Accomodation</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+        <!--================Breadcrumb Area =================-->
+        
+<!--================ Accomodation Area  =================-->
+<section class="accomodation_area section_gap">
+    <div class="container">
+        <div class="section_title text-center">
+            <h2 class="title_color">Special Accommodation</h2>
+            <p>We all live in an age that belongs to the young at heart. Life that is becoming extremely fast,</p>
+        </div>
+        <div class="row mb_30">
+            <!-- Room 1 -->
+            <div class="col-lg-3 col-sm-6">
+                <div class="accomodation_item text-center">
+                    <div class="hotel_img">
+                        <img src="{% static 'image/room1.jpg' %}" alt="">
+                        <a href="{% url 'bookings:book_now' room_id=1 %}" class="btn theme_btn button_hover">Book Now</a>
+                    </div>
+                    <a href="#"><h4 class="sec_h4">Double Deluxe Room</h4></a>
+                    <h5>Rs.2000<small>/night</small></h5>
+                    <button type="button" onclick="checkRoomAvailability(1)" class="btn btn-primary">Check Availability</button>
+                    <div id="availability-room-1" class="availability-message"></div>
+                </div>
+            </div>
+            <!-- Room 2 -->
+            <div class="col-lg-3 col-sm-6">
+                <div class="accomodation_item text-center">
+                    <div class="hotel_img">
+                        <img src="{% static 'image/room2.jpg' %}" alt="">
+                        <a href="{% url 'bookings:book_now' room_id=2 %}" class="btn theme_btn button_hover">Book Now</a>
+                    </div>
+                    <a href="#"><h4 class="sec_h4">Single Deluxe Room</h4></a>
+                    <h5>Rs.1500<small>/night</small></h5>
+                    <button type="button" onclick="checkRoomAvailability(2)" class="btn btn-primary">Check Availability</button>
+                    <div id="availability-room-2" class="availability-message"></div>
+                </div>
+            </div>
+            <!-- Room 3 -->
+            <div class="col-lg-3 col-sm-6">
+                <div class="accomodation_item text-center">
+                    <div class="hotel_img">
+                        <img src="{% static 'image/room3.jpg' %}" alt="">
+                        <a href="{% url 'bookings:book_now' room_id=3 %}" class="btn theme_btn button_hover">Book Now</a>
+                    </div>
+                    <a href="#"><h4 class="sec_h4">Honeymoon Suite</h4></a>
+                    <h5>Rs.2500<small>/night</small></h5>
+                    <button type="button" onclick="checkRoomAvailability(3)" class="btn btn-primary">Check Availability</button>
+                    <div id="availability-room-3" class="availability-message"></div>
+                </div>
+            </div>
+            <!-- Room 4 -->
+            <div class="col-lg-3 col-sm-6">
+                <div class="accomodation_item text-center">
+                    <div class="hotel_img">
+                        <img src="{% static 'image/room4.jpg' %}" alt="">
+                        <a href="{% url 'bookings:book_now' room_id=4 %}" class="btn theme_btn button_hover">Book Now</a>
+                    </div>
+                    <a href="#"><h4 class="sec_h4">Economy Double</h4></a>
+                    <h5>Rs.1000<small>/night</small></h5>
+                    <button type="button" onclick="checkRoomAvailability(4)" class="btn btn-primary">Check Availability</button>
+                    <div id="availability-room-4" class="availability-message"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function checkRoomAvailability(roomId) {
+        const formData = new FormData();
+        formData.append('room_id', roomId);
+
+        fetch("{% url 'bookings:room_availability' %}", {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            const messageElement = document.getElementById(`availability-room-${roomId}`);
+            if (data.available) {
+                messageElement.textContent = `Only ${data.available_rooms} rooms available`;
+            } else {
+                messageElement.textContent = 'No rooms available';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+</script>
+        
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/popper.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+        <script src="js/jquery.ajaxchimp.min.js"></script>
+        <script src="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+        <script src="vendors/nice-select/js/jquery.nice-select.js"></script>
+        <script src="js/mail-script.js"></script>
+        <script src="js/stellar.js"></script>
+        <script src="vendors/lightbox/simpleLightbox.min.js"></script>
+        <script src="js/custom.js"></script>
+    </body>
+{% endblock %}

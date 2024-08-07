@@ -1,0 +1,40 @@
+<!-- templates/bookings/booking_history.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Your Booking History</h2>
+    {% if bookings %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Room Type</th>
+                    <th>Check-in Date</th>
+                    <th>Check-out Date</th>
+                    <th>Number of Rooms</th>
+                    <th>Number of Adults</th>
+                    <th>Number of Children</th>
+                    <th>Total Price</th>
+                    <th>Booked At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.room_type }}</td>
+                    <td>{{ booking.check_in }}</td>
+                    <td>{{ booking.check_out }}</td>
+                    <td>{{ booking.num_rooms }}</td>
+                    <td>{{ booking.adults }}</td>
+                    <td>{{ booking.children }}</td>
+                    <td>Rs.{{ booking.total_price }}</td>
+                    <td>{{ booking.booked_at }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You have no bookings yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

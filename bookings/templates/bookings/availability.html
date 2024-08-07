@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="container-sub">
+        <div class="row justify-content-center">
+            <div class="card-header">
+                <h2>Room Availability</h2>
+                {% if availability_list %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Room Type</th>
+                                <th>Available Rooms(Today)</th>
+                                <th>Price (per night)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for availability in availability_list %}
+                            <tr>
+                                <td>{{ availability.room.type }}</td>
+                                <td>{{ availability.available_rooms }}</td>
+                                <td>Rs.{{ availability.price }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No availability data found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>                       
+{% endblock %}

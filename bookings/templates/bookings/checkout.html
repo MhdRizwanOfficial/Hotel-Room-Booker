@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="container-sub">
+        <div class="row justify-content-center">
+            <div class="card-header">
+                <h2>Your Bookings</h2>
+                <form method="POST" action="{% url 'bookings:booking_success' %}">
+                    {% csrf_token %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Room Type</th>
+                                <th>Check-in Date</th>
+                                <th>Check-out Date</th>
+                                <th>Booked At</th>
+                                <th>Adults</th>
+                                <th>Children</th>
+                                <th>Number of Rooms</th>
+                                <th>Price per Night</th>
+                                <th>Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for booking in bookings %}
+                            <tr>
+                                <td>{{ booking.room_type }}</td>
+                                <td>{{ booking.check_in }}</td>
+                                <td>{{ booking.check_out }}</td>
+                                <td>{{ booking.booked_at }}</td>
+                                <td>{{ booking.adults }}</td>
+                                <td>{{ booking.children }}</td> 
+                                <td>{{ booking.num_rooms }}</td>
+                                <td>Rs{{ booking.price_per_night }}</td>
+                                <td>Rs{{ booking.total_price }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="8">No bookings found.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-success">Proceed</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>            
+</div>
+{% endblock %}

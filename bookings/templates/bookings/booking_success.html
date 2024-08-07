@@ -1,0 +1,16 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="container-sub">
+        <div class="row justify-content-center">
+            <div class="card-header">
+                <h2>Booking Successful!</h2>
+                <p>Your booking has been successfully completed. Thank you for choosing our service!</p>
+                <a href="{% url 'home' %}" class="btn btn-primary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

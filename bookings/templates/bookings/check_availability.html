@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Room Availability</h1>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% else %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Room Type</th>
+                    <th>Check-in Date</th>
+                    <th>Check-out Date</th>
+                    <th>Available Rooms</th>
+                    <th>Price (per night)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for availability in availability_list %}
+                    <tr>
+                        <td>{{ availability.room.type }}</td>
+                        <td>{{ check_in|date:"d-m-Y" }}</td>
+                        <td>{{ check_out|date:"d-m-Y" }}</td>
+                        <td>{{ availability.available_rooms }}</td>
+                        <td>Rs.{{ availability.price }}</td>
+                        <td>
+                            <a href="{% url 'bookings:book_now' availability.room.id %}?check_in={{ check_in|date:"Y-m-d" }}&check_out={{ check_out|date:"Y-m-d" }}" class="btn btn-primary">Book Now</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+{% endblock %}

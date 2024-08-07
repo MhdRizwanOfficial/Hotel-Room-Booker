@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="container-sub">
+        <div class="row justify-content-center">
+            <div class="card-header">
+                <h2>Book Your Room: {{ room.type }}</h2>
+                <form method="POST" action="{% url 'bookings:book_now' room.id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="check_in">Check-in Date:</label>
+                        <input type="date" class="form-control" id="check_in" name="check_in" value="{{ check_in }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="check_out">Check-out Date:</label>
+                        <input type="date" class="form-control" id="check_out" name="check_out" value="{{ check_out }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="num_rooms">Number of Rooms (Available: {{ available_rooms }}):</label>
+                        <input type="number" class="form-control" id="num_rooms" name="num_rooms" value="1" min="1" max="{{ available_rooms }}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adults">Number of Adults:</label>
+                        <input type="number" class="form-control" id="adults" name="adults" value="2" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="children">Number of Children (Below 5 years old):</label>
+                        <input type="number" class="form-control" id="children" name="children" value="0" min="0" required>
+                    </div>
+
+                    <div class="col-md-12" style="margin-top: 20px;">
+                        <button type="submit" class="btn btn-primary">Book Now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const numRoomsInput = document.getElementById('num_rooms');
+    const adultsInput = document.getElementById('adults');
+    const childrenInput = document.getElementById('children');
+
+    function updateLimits() {
+        const numRooms = parseInt(numRoomsInput.value) || 1;
+        const maxAdults = numRooms * 2; // 2 adults per room
+        const maxChildren = numRooms * 1; // 1 child per room
+        
+        if (parseInt(adultsInput.value) > maxAdults) {
+            adultsInput.value = maxAdults;
+        }
+        adultsInput.max = maxAdults;
+        
+        if (parseInt(childrenInput.value) > maxChildren) {
+            childrenInput.value = maxChildren;
+        }
+        childrenInput.max = maxChildren;
+    }
+
+    // Update limits initially
+    updateLimits();
+
+    // Update limits based on number of rooms input
+    numRoomsInput.addEventListener('input', function() {
+        updateLimits();
+    });
+
+    // Ensure number of adults does not exceed the limit
+    adultsInput.addEventListener('input', function() {
+        const maxAdults = parseInt(adultsInput.max);
+        if (parseInt(adultsInput.value) > maxAdults) {
+            adultsInput.value = maxAdults;
+        }
+    });
+
+    // Ensure number of children does not exceed the limit
+    childrenInput.addEventListener('input', function() {
+        const maxChildren = parseInt(childrenInput.max);
+        if (parseInt(childrenInput.value) > maxChildren) {
+            childrenInput.value = maxChildren;
+        }
+    });
+});
+</script>
+{% endblock %}
